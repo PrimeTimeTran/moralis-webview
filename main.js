@@ -11,6 +11,7 @@ async function login() {
       user = await Moralis.authenticate({ signingMessage: "Hello World!" })
       console.log(user)
       console.log(user.get('ethAddress'))
+      document.getElementById("prompt").innerHTML = 'Welcome user with eth wallet address' + user.get('ethAddress');
     } catch (error) {
       console.log(error)
     }
@@ -20,6 +21,7 @@ async function login() {
 async function logOut() {
   await Moralis.User.logOut();
   console.log("logged out");
+  document.getElementById("prompt").innerHTML = 'Goodbye!'
 }
 
 document.getElementById("btn-login").onclick = login;
