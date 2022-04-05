@@ -13,8 +13,22 @@ async function login() {
       console.log(user.get('ethAddress'))
       document.getElementById("prompt").innerHTML = 'Welcome user with eth wallet address' + user.get('ethAddress');
     } catch (error) {
-      console.log(error)
+      console.log('Error!', error);
+      alert('Error!', error);
     }
+  }
+}
+
+
+async function loginWalletConnect() {
+  try {
+    const user = await Moralis.authenticate({ provider: "walletconnect" })
+    console.log(user);
+    console.log(user.get('ethAddress'))
+    document.getElementById("prompt").innerHTML = 'Welcome user with eth wallet address' + user.get('ethAddress');
+  } catch (error) {
+    console.log('Error!', error);
+    alert('Error!', error);
   }
 }
 
@@ -25,4 +39,5 @@ async function logOut() {
 }
 
 document.getElementById("btn-login").onclick = login;
+document.getElementById("btn-wallet").onclick = loginWalletConnect;
 document.getElementById("btn-logout").onclick = logOut;
